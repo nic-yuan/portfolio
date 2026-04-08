@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apollo OS + Vertical 工具包</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f8f9fa;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero-badges {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.2);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+      color: #1a1a2e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 2px;
+    }
+
+    /* Apollo OS Section */
+    .apollo-intro {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .apollo-intro h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #667eea;
+    }
+
+    .apollo-intro p {
+      color: #666;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid #eee;
+    }
+
+    .skill-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: #1a1a2e;
+    }
+
+    .skill-card p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background: #f0f2ff;
+      color: #667eea;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    .skill-tag.coming-soon {
+      background: #fff3e0;
+      color: #ff9800;
+    }
+
+    /* Vertical Section */
+    .vertical-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .vertical-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .vertical-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .vertical-card-header {
+      padding: 24px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+    }
+
+    .vertical-card-header.chengtou {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .vertical-card-header h4 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .vertical-card-header p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .vertical-card-body {
+      padding: 24px;
+    }
+
+    .vertical-card-body p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .vertical-status {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .status-done {
+      background: #e8f5e9;
+      color: #4caf50;
+    }
+
+    .status-planning {
+      background: #fff3e0;
+      color: #ff9800;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn.disabled {
+      background: #ccc;
+      pointer-events: none;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .contact h3 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: #666;
+    }
+
+    .contact-item strong {
+      color: #1a1a2e;
+    }
+
+    .wechat-qr {
+      margin-top: 20px;
+    }
+
+    .wechat-qr img {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      border: 4px solid #f0f2ff;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.4rem;
+      }
+      
+      .container {
+        padding: 40px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Apollo OS + Vertical 工具包</h1>
+    <p>AI 个人操作系统 · 垂直领域工具集</p>
+    <div class="hero-badges">
+      <span class="badge">🤖 AI 原生</span>
+      <span class="badge">🛠️ 自动化</span>
+      <span class="badge">📈 持续进化</span>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- Apollo OS -->
+    <h2 class="section-title">Apollo OS</h2>
+    <div class="apollo-intro">
+      <h3>AI 个人操作系统</h3>
+      <p>借鉴人体系统设计理念，构建一套自我感知、自我优化、自我进化的 AI 工作框架。涵盖记忆整理、风险拦截、任务规划等核心能力。</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>🧠 Apollo Dream</h4>
+        <p>像睡眠一样整理记忆，强化重要内容，忘却不重要的细节。</p>
+        <span class="skill-tag">记忆整理</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🛡️ Apollo Immu</h4>
+        <p>像免疫系统一样拦截危险操作，守护数据与系统安全。</p>
+        <span class="skill-tag">安全防御</span>
+      </div>
+
+      <div class="skill-card">
+        <h4">⚡ Apollo Neuro</h4>
+        <p>像神经系统一样选择最快路径，紧急事快速处理，复杂事慢慢想。</p>
+        <span class="skill-tag">智能调度</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🔄 Apollo Endo</h4>
+        <p>像内分泌系统一样调控全局参数，让 AI 自动感知自身状态。</p>
+        <span class="skill-tag">参数调控</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🌱 Apollo Stem</h4>
+        <p>像干细胞一样自我更新和分化，定期更新核心能力。</p>
+        <span class="skill-tag">自我进化</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>⏰ Apollo Circadian</h4>
+        <p>找到最佳工作节奏，什么时候该深度思考，什么时候该整理休息。</p>
+        <span class="skill-tag">节奏管理</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🔍 Apollo Renal</h4>
+        <p>像肾脏一样过滤垃圾信息，保留有用的内容。</p>
+        <span class="skill-tag">信息过滤</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🔬 Apollo Epi</h4>
+        <p>像表观遗传一样传承知识，让 AI 的学习经验能够跨代积累。</p>
+        <span class="skill-tag">知识传承</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🧬 Apollo Autophagy</h4>
+        <p>彻底删除不需要的东西，释放空间。</p>
+        <span class="skill-tag">空间清理</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🔗 Apollo Coordinator</h4>
+        <p>复杂任务交给多个小助手同时做，最后汇总结果。</p>
+        <span class="skill-tag">任务协调</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>📐 Apollo Workflow</h4>
+        <p>把你的想法变成能用的代码，先想清楚，再一步一步做出来。</p>
+        <span class="skill-tag">工程化</span>
+      </div>
+
+      <div class="skill-card">
+        <h4>🗺️ Apollo Overview</h4>
+        <p>给你一张完整的方法论地图，告诉你从想法到成品每步该做什么。</p>
+        <span class="skill-tag">方法论</span>
+      </div>
+
+      <!-- Coming Soon Placeholder -->
+      <div class="skill-card">
+        <h4>🚀 更多技能</h4>
+        <p>建设中...</p>
+        <span class="skill-tag coming-soon">即将到来</span>
+      </div>
+    </div>
+
+    <!-- Vertical Tools -->
+    <h2 class="section-title" style="margin-top: 60px;">Vertical 工具包</h2>
+    <div class="vertical-grid">
+      
+      <div class="vertical-card">
+        <div class="vertical-card-header">
+          <h4>🏠 装修估价器</h4>
+          <p>home-reno-estimator</p>
+        </div>
+        <div class="vertical-card-body">
+          <p>基于真实市场数据的装修报价估算工具。支持常见户型，自动计算材料费、人工费、管理费，提供详细的预算清单。</p>
+          <span class="vertical-status status-done">✅ 可用</span>
+          <a href="#" class="btn">预约演示</a>
+        </div>
+      </div>
+
+      <div class="vertical-card">
+        <div class="vertical-card-header chengtou">
+          <h4>🏗️ 城投贸易风控助手</h4>
+          <p>vertical-chengtou-trade-risk</p>
+        </div>
+        <div class="vertical-card-body">
+          <p>城投公司贸易业务风险审查工具，帮你检查合同风险和对手方背景。</p>
+          <span class="vertical-status status-planning">🚧 规划中</span>
+          <a href="#" class="btn disabled">敬请期待</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contact -->
+    <h2 class="section-title" style="margin-top: 60px;">联系</h2>
+    <div class="contact">
+      <h3>需要定制开发？</h3>
+      <div class="contact-item">
+        <span>📱 微信：</span>
+        <strong>15101139007</strong>
+      </div>
+      <div class="contact-item">
+        <span>📧 邮箱：</span>
+        <strong>待提供</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Powered by Apollo OS · 持续进化中</p>
+  </footer>
+
+</body>
+</html>
